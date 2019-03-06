@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vnindex;
-
+use GuzzleHttp\Client;
 class ProccessController extends Controller
 {
     public function pullData(){
         try{
+//            echo phpinfo();die;
+
             $url = 'https://price-cmchn-02.vndirect.com.vn/priceservice/secinfo/snapshot/q=floorCode:10';
-            $curlSession = curl_init();
-            curl_setopt($curlSession, CURLOPT_URL, $url);
-            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-            $jsonData = json_decode(curl_exec($curlSession));
+            $data = file_get_contents($url);
+            $jsonData = json_decode($data);
             $dataAll = $jsonData->{'10'};
             if(count($dataAll)){
                 $date = date('Y-m-d');
@@ -39,9 +38,11 @@ class ProccessController extends Controller
                 }
                 Vnindex::insert($total_data_insert);
             }
-            curl_close($curlSession);
         }catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+    public function displayVNindex(){
+        return view('vnindex');
     }
 }

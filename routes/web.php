@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/pull-data','ProccessController@pullData');
+Route::get('/display-vnindex','ProccessController@displayVNindex');
