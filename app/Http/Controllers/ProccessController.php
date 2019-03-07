@@ -36,6 +36,7 @@ class ProccessController extends Controller
                     );
                     array_push($total_data_insert,$data_insert);
                 }
+                // dd($total_data_insert);
                 Vnindex::insert($total_data_insert);
             }
         }catch (\Exception $e) {
@@ -43,6 +44,17 @@ class ProccessController extends Controller
         }
     }
     public function displayVNindex(){
-        return view('vnindex');
+        $datas = Vnindex::all()->toArray();
+        $array_by_date = [];
+        $data_date = [];
+        foreach($datas as $data){
+            $array_by_date[$data['code']][] = $data;
+            if(!in_array($data['ngaythang'],$data_date)){
+                array_push($data_date,$data['ngaythang']);
+            }
+        }
+        // dd($data_date);
+        // dd($array_by_date);
+        return view('vnindex',compact('array_by_date','data_date'));
     }
 }

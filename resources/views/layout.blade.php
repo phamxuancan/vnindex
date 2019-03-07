@@ -2,6 +2,7 @@
     <head>
         <title>@yield('title')</title>
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+        <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
 
     </head>
     <body>
@@ -31,7 +32,7 @@
             </li>
         </ul>
         </nav>
-        <div class="container">
+        <div class="container-fluid">
             @yield('content')
         </div>
     </body>

@@ -10,4 +10,5 @@ class Vnindex extends Model
     protected $fillable = [
         'code', 'thamchieu', 'khoiluong','nnmua','nnban','ngaythang','created_at','updated_at'
     ];
+    
 }
