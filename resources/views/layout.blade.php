@@ -3,12 +3,11 @@
         <title>@yield('title')</title>
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet" type="text/css" >
         <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
-
     </head>
     <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="{{ route('display-vnindex')}}">HOME</a>
 
         <!-- Links -->
         <ul class="navbar-nav">
@@ -36,4 +35,7 @@
             @yield('content')
         </div>
     </body>
+    <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
+    <script src="{{ URL::asset('js/popper.min.js') }}" ></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 </html>

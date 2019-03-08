@@ -4,11 +4,12 @@
             <thead>
             <tr>
                 <?php $i =0;  ?>
-                @foreach($data_date as $date)
                 <th></th>
+                @foreach($data_date as $date)
                     <th class="text_small text-center {{ ($i%2==0)?'odd':'even' }}" colspan="4">{{ $date }}</th>
                     <?php $i++; ?>
                 @endforeach
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -22,10 +23,11 @@
                 <td class="font-weight-bold width-stand text_small text-center {{ ($i%2==0)?'odd':'even' }}">NNBAN</td>
                 <?php $i++; ?>
             @endforeach
+            <th class="font-weight-bold width-stand text_small text-center"> CN </th>
             </tr>
             @foreach($array_by_date as $key=> $data)
                 <tr>
-                    <td  class="width-stand text_small text-center">{{ $key }}</td>
+                    <td  class="width-stand text_small text-center" title="{{ $data[0]['stock']['companyName'] }}  - {{ $data[0]['stock']['industryName'] }}">{{ $key }}</td>
                     <?php $i = 0; ?>
                     @foreach($data as $t)
                     <?php 
@@ -50,6 +52,16 @@
                         <td class="width-stand text_small text-center {{ ($i%2==0)?'odd':'even' }}">{{ $t['nnban'] }}</td>
                         <?php $i++;  ?>
                     @endforeach
+                    <td  class="font-weight-bold width-stand text_small text-center" >
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('display-vnindex',['category' => $t['stock']['industryName']])}}">Cùng Ngành</a>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
