@@ -54,11 +54,11 @@
                     @endforeach
                     <td  class="font-weight-bold width-stand text_small text-center" >
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="text_small btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{route('display-vnindex',['category' => $t['stock']['industryName']])}}">Cùng Ngành</a>
+                            <div class="text_small dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="text_small dropdown-item" href="{{route('display-vnindex',['category' => $t['stock']['industryName']])}}">Cùng Ngành</a>
                             </div>
                         </div>
                     </td>

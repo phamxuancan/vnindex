@@ -19,3 +19,6 @@ tr:hover{
 .width-stand{
     width: 79px;
 }
+td{
+    vertical-align: middle !important;
+}
