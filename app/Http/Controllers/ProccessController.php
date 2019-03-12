@@ -45,7 +45,27 @@ class ProccessController extends Controller
         }
     }
     public function displayVNindex(Request $request){
-        if($request->category){
+        $date = date('Y-m-d');
+        if($request->from){
+            $datas = Vnindex::with('stock')
+            ->where('thamchieu','>',(int)$request->from)
+            ->where('thamchieu','<=',(int)$request->to)
+            ->where('ngaythang',$date)
+            ->orderby('thamchieu','ASC')
+            ->get()->toArray();
+        }elseif($request->nnban){
+            $datas = Vnindex::with('stock')
+            ->where('nnban','>=',(int)$request->nnban)
+            ->where('ngaythang',$date)
+            ->orderby('nnmua','DESC')
+            ->get()->toArray();
+        }elseif($request->nnmua){
+            $datas = Vnindex::with('stock')
+            ->where('nnmua','>',(int)($request->nnmua))
+            ->where('ngaythang',$date)
+            ->orderby('nnmua','DESC')
+            ->get()->toArray();
+        }elseif($request->category){
             $categoryName = $request->category;
             $datas = Vnindex::with('stock')->whereHas('stock', function($query) use ($categoryName){
                 return $query->where('industryName', $categoryName);

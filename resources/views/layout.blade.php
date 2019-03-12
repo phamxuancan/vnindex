@@ -12,21 +12,26 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link" href="#">Link 1</a>
+            <a class="nav-link" href="{{ route('display-vnindex',['nnmua' => 5000])}}">NN mua >5000</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
+            <a class="nav-link" href="{{ route('display-vnindex',['nnban' => 5000])}}">NN ban >5000</a>
             </li>
 
             <!-- Dropdown -->
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Dropdown link
+                Loc Gia
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Link 1</a>
-                <a class="dropdown-item" href="#">Link 2</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 1,'to'=>10])}}">From 1->10</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 10,'to'=>20])}}">From 10->20</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 20,'to'=>30])}}">From 20->30</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 30,'to'=>40])}}">From 30->40</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 40,'to'=>50])}}">From 40->50</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 50,'to'=>60])}}">From 50->60</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 60,'to'=>70])}}">From 60->70</a>
+                <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 70,'to'=>300])}}">Tren 70</a>
             </div>
             </li>
         </ul>
