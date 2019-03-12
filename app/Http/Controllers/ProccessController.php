@@ -51,18 +51,21 @@ class ProccessController extends Controller
             ->where('thamchieu','>',(int)$request->from)
             ->where('thamchieu','<=',(int)$request->to)
             ->where('ngaythang',$date)
+            ->where('khoiluong','>',10000)
             ->orderby('thamchieu','ASC')
             ->get()->toArray();
         }elseif($request->nnban){
             $datas = Vnindex::with('stock')
             ->where('nnban','>=',(int)$request->nnban)
             ->where('ngaythang',$date)
+            ->where('khoiluong','>',10000)
             ->orderby('nnmua','DESC')
             ->get()->toArray();
         }elseif($request->nnmua){
             $datas = Vnindex::with('stock')
             ->where('nnmua','>',(int)($request->nnmua))
             ->where('ngaythang',$date)
+            ->where('khoiluong','>',20000)
             ->orderby('nnmua','DESC')
             ->get()->toArray();
         }elseif($request->category){
