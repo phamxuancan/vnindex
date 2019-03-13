@@ -29,16 +29,17 @@ class ProccessController extends Controller
                     $nnban = $convert_to_array['38'];
                     $data_insert = array(
                         'code' => $code,
-                        'thamchieu' => $tcToday,
+                        'thamchieu' => (float)$tcToday,
                         'khoiluong' => $klToday,
-                        'nnmua' => $nnmua,
-                        'nnban' => $nnban,
+                        'nnmua' => (int)$nnmua,
+                        'nnban' => (int)$nnban,
                         'ngaythang' => $date
                     );
                     array_push($total_data_insert,$data_insert);
                 }
                 // dd($total_data_insert);
                 Vnindex::insert($total_data_insert);
+                return redirect()->route('display-vnindex');
             }
         }catch (\Exception $e) {
             return $e->getMessage();
@@ -46,7 +47,13 @@ class ProccessController extends Controller
     }
     public function displayVNindex(Request $request){
         $date = date('Y-m-d');
-        if($request->from){
+
+        if($request->code){
+            $datas = Vnindex::with('stock')
+            ->where('code','=',$request->code)
+            ->get()->toArray();
+        }
+        elseif($request->from){
             $datas = Vnindex::with('stock')
             ->where('thamchieu','>',(int)$request->from)
             ->where('thamchieu','<=',(int)$request->to)

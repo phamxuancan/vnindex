@@ -34,6 +34,12 @@
                 <a class="dropdown-item" href="{{ route('display-vnindex',['from' => 70,'to'=>300])}}">Tren 70</a>
             </div>
             </li>
+            <li class="nav-item">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" name="code" type="text" placeholder="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+            </li>
         </ul>
         </nav>
         <div class="container-fluid">
