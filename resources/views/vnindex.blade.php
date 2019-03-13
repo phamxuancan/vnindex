@@ -27,7 +27,7 @@
             </tr>
             @foreach($array_by_date as $key=> $data)
                 <tr>
-                    <td  class="width-stand text_small text-center" title="{{ $data[0]['stock']['companyName'] }}  - {{ $data[0]['stock']['industryName'] }}">{{ $key }} ({{ number_format($data[0]['stock']['eps']*$data[0]['stock']['pe']) }})</td>
+                    <td  class="width-stand text_small text-center {{ ($data[0]['stock']['eps']*$data[0]['stock']['pe']) > ($data[0]['thamchieu']*1000) ?'bg-success':'fff'}}" title="{{ $data[0]['stock']['companyName'] }}  - {{ $data[0]['stock']['industryName'] }}">{{ $key }} ({{ number_format($data[0]['stock']['eps']*$data[0]['stock']['pe']) }})</td>
                     <?php $i = 0; ?>
                     @foreach($data as $t)
                     <?php 

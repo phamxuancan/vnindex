@@ -111,10 +111,11 @@ class ProccessController extends Controller
         }
     }
     public function updateEPSVNINDEX(){
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['verify' => false]);
         $Machungkhoan = Stock::select('symbol','id')->where('floor', 'HOSE')->get()->toArray();
         foreach($Machungkhoan as $code){
             $response = $client->request('POST', 'https://finance.vietstock.vn/company/tradinginfo',[
+                'connect_timeout' => 120,
                 'form_params' => [
                     'code' => $code['symbol'],
                     's' => 0,
