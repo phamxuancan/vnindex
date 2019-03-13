@@ -110,4 +110,28 @@ class ProccessController extends Controller
             return $e->getMessage();
         }
     }
+    public function updateEPSVNINDEX(){
+        $client = new \GuzzleHttp\Client();
+        $Machungkhoan = Stock::select('symbol','id')->where('floor', 'HOSE')->get()->toArray();
+        foreach($Machungkhoan as $code){
+            $response = $client->request('POST', 'https://finance.vietstock.vn/company/tradinginfo',[
+                'form_params' => [
+                    'code' => $code['symbol'],
+                    's' => 0,
+                ]
+            ]);
+            $body = json_decode($response->getBody(),true);
+            $status = $response->getStatusCode();
+                if($status == 200){
+                    $body = json_decode($response->getBody(),true);
+                    $stock = Stock::find($code['id']);
+                    $stock->eps = $body['EPS'];
+                    $stock->pe = $body['PE'];
+                    $stock->save();
+                    echo 'success'. $code['symbol'] .'<br/>' ;
+                }else{
+                    echo 'fail';
+                }
+            }
+    }
 }

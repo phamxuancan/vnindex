@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/pull-data','ProccessController@pullData');
 Route::get('/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
 Route::get('/generate-stock','ProccessController@generateStock');
+Route::post('/update-eps','ProccessController@updateEPSVNINDEX');

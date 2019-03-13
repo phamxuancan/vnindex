@@ -43,6 +43,7 @@
         </ul>
         </nav>
         <div class="container-fluid">
+            @include('elements.error')
             @yield('content')
         </div>
     </body>
