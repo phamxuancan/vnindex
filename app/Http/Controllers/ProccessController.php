@@ -46,8 +46,8 @@ class ProccessController extends Controller
         }
     }
     public function displayVNindex(Request $request){
-        $date = date('Y-m-d');
-
+        $date = Vnindex::orderBy('id','DESC')->first()->toArray();
+        $date = $date['ngaythang'];
         if($request->code){
             $datas = Vnindex::with('stock')
             ->where('code','=',$request->code)
@@ -115,7 +115,7 @@ class ProccessController extends Controller
         $Machungkhoan = Stock::select('symbol','id')->where('floor', 'HOSE')->get()->toArray();
         foreach($Machungkhoan as $code){
             $response = $client->request('POST', 'https://finance.vietstock.vn/company/tradinginfo',[
-                'connect_timeout' => 120,
+                'connect_timeout' => 4000,
                 'form_params' => [
                     'code' => $code['symbol'],
                     's' => 0,
