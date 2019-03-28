@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Vnindex;
 use App\Stock;
 use GuzzleHttp\Client;
+use DB;
 class ProccessController extends Controller
 {
     public function pullData(){
@@ -52,6 +53,12 @@ class ProccessController extends Controller
             $datas = Vnindex::with('stock')
             ->where('code','=',$request->code)
             ->get()->toArray();
+        }elseif($request->desc){
+            $results = DB::select( DB::raw("SELECT CODE,SUM(nnmua) as tong1 ,SUM(nnban) as tong2,(SUM(nnmua)-SUM(nnban)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 0 ORDER BY nfsdf DESC"));
+            // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
+            dd($results);
+        }elseif($request->asc){
+
         }
         elseif($request->from){
             $datas = Vnindex::with('stock')
@@ -135,4 +142,14 @@ class ProccessController extends Controller
                 }
             }
     }
+    public function sort(Request $request){
+        if($request->asc){
+            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnban)-SUM(nnmua)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 5000 ORDER BY nfsdf DESC"));
+            // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
+        }elseif($request->desc){
+            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnmua)-SUM(nnban)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 5000 ORDER BY nfsdf DESC"));
+            // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
+        }
+        return view('sort',compact('results'));
+    }   
 }

@@ -15,9 +15,14 @@
             <a class="nav-link" href="{{ route('display-vnindex',['nnmua' => 5000])}}">NN mua >5000</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{ route('display-vnindex',['nnban' => 5000])}}">NN ban >5000</a>
+                <a class="nav-link" href="{{ route('display-vnindex',['nnban' => 5000])}}">NN ban >5000</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('sort',['desc' => 1])}}">Mua > ban</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('sort',['asc' => 1])}}">Mua < ban</a>
+            </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
