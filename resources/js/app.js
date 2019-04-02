@@ -8,9 +8,10 @@
 require('./bootstrap');
 import './bootstrap';
 import Vue from 'vue';
+import Buefy from 'buefy'
 import Routes from '@/js/routers.js';
 import App from '@/js/views/App';
-
+Vue.use(Buefy)
 const app = new Vue(
     {
         el:'#app',
