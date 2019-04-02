@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
-Route::get('/pull-data','ProccessController@pullData');
-Route::get('/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
-Route::get('/sort-condition','ProccessController@sort')->name('sort');;
-Route::get('/generate-stock','ProccessController@generateStock');
-Route::post('/update-eps','ProccessController@updateEPSVNINDEX');
+// Route::get('/pull-data','ProccessController@pullData');
+// Route::get('/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
+// Route::get('/sort-condition','ProccessController@sort')->name('sort');;
+// Route::get('/generate-stock','ProccessController@generateStock');
+// Route::post('/update-eps','ProccessController@updateEPSVNINDEX');
