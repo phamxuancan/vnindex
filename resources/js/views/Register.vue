@@ -3,12 +3,17 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">Login</h3>
+                    <h3 class="title has-text-grey">Register</h3>
                     <div class="box">
                         <input type="hidden" name="_token" :value="csrf_token">
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" v-model="email" placeholder="Your email" autofocus="true">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" v-model="username" placeholder="Your username" autofocus="true">
                             </div>
                         </div>
 
@@ -18,12 +23,14 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label class="checkbox">
-                              <input type="checkbox">
-                              Remember me
-                            </label>
+                            <div class="control">
+                                <input class="input is-large" v-model="repassword" type="password" placeholder="Type password again">
+                            </div>
                         </div>
-                        <button @click="login" class="button is-block is-info is-large is-fullwidth">Login</button>
+                        <div class="buttons is-centered are-medium">
+                            <button @click="register" class="button is-block is-info is-large">Register</button>
+                            <button @click="cancel" class="button is-block is-large">Cancel</button>
+                        </div>
                     </div>
                     <p class="has-text-grey">
                         <router-link :to="{name:'register'}">Sign Up</router-link> 
@@ -39,13 +46,15 @@
 export default {
   metaInfo () {
     return { 
-      title: 'Login'
+      title: 'Register'
       }
   },
   data(){
     return {
       email:'',
       password:'',
+      repassword:'',
+      username:'',
       token:''
     }
   },
@@ -53,16 +62,20 @@ export default {
       
   },
   methods: {  
-    login(){
+    register(){
       const data = {
         'email': this.email,
         'password': this.password,
+        'username': this.username,
         _token: this.token
       }
-      this.axios.post('/api/login',data).then((response) => {
+      this.axios.post('/api/register',data).then((response) => {
         console.log(response.data)
       })
       console.log(this.email);
+    },
+    cancel(){
+
     }
     
   },

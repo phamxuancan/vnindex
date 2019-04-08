@@ -18,5 +18,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 Route::middleware('guest:api')->group(function () {
-    Route::post('login','ProccessController@updateEPSVNINDEX');
+    Route::post('register','Auth\RegisterController@register');
+    Route::post('login','Auth\LoginController@login');
 });
