@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::group(['middleware' => 'guest:api'], function () {
-    Route::post('/update-eps','ProccessController@updateEPS');
+// Route::middleware('auth:api')->post('/login', function (Request $request) {
+//     return 1;
+//     return $request->user();
+// });
+Route::middleware('guest:api')->group(function () {
+    Route::post('login','ProccessController@updateEPSVNINDEX');
 });

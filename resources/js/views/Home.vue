@@ -55,9 +55,9 @@
 
 <script>
     export default {
-        layout:"test",
+        layout:"index",
         mounted() {
-            console.log('Compsonent mounted.')
+            console.log(this.$route);
         }
     }
 </script>
