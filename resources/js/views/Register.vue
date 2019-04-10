@@ -8,23 +8,27 @@
                         <input type="hidden" name="_token" :value="csrf_token">
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" v-model="email" placeholder="Your email" autofocus="true">
+                                <p class="help is-danger" v-if="submit && !$v.email.required">Field is required</p>
+                                <input class="input is-large" :class="{ 'is-danger': submit && !$v.email.required }" v-model.trim="email" placeholder="Your email" autofocus="true">
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" v-model="username" placeholder="Your username" autofocus="true">
+                                <p class="help is-danger" v-if="submit && !$v.username.required">Field is required</p>
+                                <input class="input is-large" :class="{ 'is-danger': submit && !$v.username.required }" v-model.trim="username" placeholder="Your username" autofocus="true">
                             </div>
                         </div>
 
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" v-model="password" type="password" placeholder="Your Password">
+                                <p class="help is-danger" v-if="submit && !$v.password.required">Field is required</p>
+                                <input class="input is-large" :class="{ 'is-danger': submit && !$v.password.required }" v-model.trim="password" type="password" placeholder="Your Password">
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" v-model="repassword" type="password" placeholder="Type password again">
+                                <p class="help is-danger" v-if="submit && !$v.password_confirmation.required">Field is required</p>
+                                <input class="input is-large" :class="{ 'is-danger':submit && !$v.password_confirmation.required }" v-model.trim="password_confirmation " type="password" placeholder="Type password again">
                             </div>
                         </div>
                         <div class="buttons is-centered are-medium">
@@ -43,6 +47,8 @@
     </section>
 </template>
 <script>
+import { required, minLength, between } from 'vuelidate/lib/validators'
+import Swal from 'sweetalert2'
 export default {
   metaInfo () {
     return { 
@@ -51,28 +57,62 @@ export default {
   },
   data(){
     return {
-      email:'',
-      password:'',
-      repassword:'',
-      username:'',
-      token:''
+      email: '',
+      password: '',
+      password_confirmation: '',
+      username: '',
+      token: '',
+      submit: false
     }
   },
   created(){
-      
+      this.$parent.isLoading = false;
+  },
+  validations: {
+    email: {
+      required
+    },
+    password: {
+     required
+    },
+    password_confirmation: {
+      required
+    },
+    username: {
+      required
+    }
   },
   methods: {  
     register(){
-      const data = {
-        'email': this.email,
-        'password': this.password,
-        'username': this.username,
-        _token: this.token
-      }
-      this.axios.post('/api/register',data).then((response) => {
-        console.log(response.data)
-      })
-      console.log(this.email);
+        this.submit = true;
+        if(!this.$v.$invalid){
+            const data = {
+                email: this.email,
+                password: this.password,
+                username: this.username,
+                password_confirmation: this.password_confirmation,
+                _token: this.token
+            }
+            this.axios.post('/api/register',data)
+            .then((response) => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Register successful',
+                    type: 'success',
+                    confirmButtonText: 'OK'
+                })
+                this.$router.push('login') 
+            })
+            .catch((error)=>{
+                console.log(error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong!',
+                    type: 'error',
+                    confirmButtonText: 'OK'
+                })
+            })
+        }
     },
     cancel(){
 

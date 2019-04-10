@@ -17,7 +17,14 @@ use Illuminate\Http\Request;
 //     return 1;
 //     return $request->user();
 // });
-Route::middleware('guest:api')->group(function () {
-    Route::post('register','Auth\RegisterController@register');
-    Route::post('login','Auth\LoginController@login');
-});
+// Route::middleware('guest:api')->group(function () {
+//     Route::post('register','Auth\RegisterController@register');
+//     Route::post('login','Auth\LoginController@login');
+// });
+    Route::post('register', 'AuthController@register');
+    Route::post('login', 'AuthController@login');
+    Route::get('refresh', 'AuthController@refresh');
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('user', 'AuthController@user');
+        Route::post('logout', 'AuthController@logout');
+    });

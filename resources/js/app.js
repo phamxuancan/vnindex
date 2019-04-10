@@ -4,12 +4,10 @@
  * dependencies. Then, we will be ready to develop a robust and powerful
  * application frontend using useful Laravel and JavaScript libraries.
  */
-
 require('./bootstrap');
 import './bootstrap';
 import Vue from 'vue';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+
 import Buefy from 'buefy';
 import router from '@/js/routers.js';
 import App from '@/js/views/App';
@@ -17,12 +15,16 @@ import { store } from './stores'
 import login from "./layouts/login.vue";
 import index from "./layouts/index.vue";
 import Meta from 'vue-meta'
-
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import 'buefy/dist/buefy.css';
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
  
-Vue.use(VueAxios, axios)
+Vue.use(Buefy);
+Vue.use(VueAxios,axios)
  
 Vue.use(Meta)
-Vue.use(Buefy)
 Vue.component('login',login)
 Vue.component('index',index)
  new Vue(
