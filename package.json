@@ -24,9 +24,11 @@
     "buefy": "^0.7.3",
     "bulma": "^0.7.4",
     "sweetalert2": "^8.8.1",
+    "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
     "vue-extend-layout": "^2.0.6",
     "vue-meta": "^1.6.0",
+    "vue-router": "^3.0.5",
     "vuelidate": "^0.7.4",
     "vuex": "^3.1.0"
   }

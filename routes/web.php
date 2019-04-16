@@ -29,10 +29,11 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
 // Route::post('/update-eps','ProccessController@updateEPSVNINDEX');
     Route::get('/api/login', 'AuthController@login');
     Route::post('/api/login', 'Auth\LoginController@login');
+    Route::post('/api/register', 'AuthController@register');
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/api/user', 'AuthController@user');
-        Route::post('logout', 'AuthController@logout');
-        Route::post('register', 'AuthController@register');
+        Route::post('/api/logout', 'AuthController@logout');
+        
         
         Route::get('refresh', 'AuthController@refresh');
     });

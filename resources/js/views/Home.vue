@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <button @click="test()">fgdfds</button>
+    <button @click="logout()">logout</button>
 </section>
 </template>
 
@@ -10,10 +10,19 @@
         mounted() {
             console.log(this.$route);
         },
-        methods:{
-            test(){
-               this.axios.get('/api/user')
+        created(){
+            this.axios.get('/api/user')
             .then((response) => {
+                console.log(response);
+            })
+            .catch((error)=>{
+            })
+        },
+        methods:{
+            logout(){
+               this.axios.post('/api/logout')
+            .then((response) => {
+                this.$router.push('login');
             })
             .catch((error)=>{
             })

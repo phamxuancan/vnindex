@@ -4,7 +4,7 @@
  * dependencies. Then, we will be ready to develop a robust and powerful
  * application frontend using useful Laravel and JavaScript libraries.
  */
-require('./bootstrap');
+// require('./bootstrap');
 import './bootstrap';
 import Vue from 'vue';
 
@@ -21,11 +21,11 @@ import 'buefy/dist/buefy.css';
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
  
-Vue.use(Buefy);
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('value');
 Vue.use(VueAxios,axios)
- 
+Vue.use(Buefy);
 Vue.use(Meta)
 Vue.component('login',login)
 Vue.component('index',index)
