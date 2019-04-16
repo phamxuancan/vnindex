@@ -55407,6 +55407,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuelidate__WEBPACK_IMPORTED_MODULE_12___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(buefy__WEBPACK_IMPORTED_MODULE_2___default.a);
+var token = document.head.querySelector('meta[name="csrf-token"]');
+axios__WEBPACK_IMPORTED_MODULE_9___default.a.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('value');
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_10___default.a, axios__WEBPACK_IMPORTED_MODULE_9___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_meta__WEBPACK_IMPORTED_MODULE_8___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('login', _layouts_login_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);

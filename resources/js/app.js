@@ -22,6 +22,8 @@ import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
  
 Vue.use(Buefy);
+let token = document.head.querySelector('meta[name="csrf-token"]');
+axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('value');
 Vue.use(VueAxios,axios)
  
 Vue.use(Meta)
