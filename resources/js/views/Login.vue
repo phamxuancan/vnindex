@@ -5,7 +5,6 @@
                 <div class="column is-4 is-offset-4">
                     <h3 class="title has-text-grey">Login</h3>
                     <div class="box">
-                        <input type="hidden" name="_token" :value="csrf_token">
                         <div class="field">
                             <div class="control">
                                 <p class="help is-danger" v-if="submit && !$v.email.required">Field is required</p>
@@ -72,7 +71,6 @@ export default {
             const data = {
                 'email': this.email,
                 'password': this.password,
-                _token: this.token
             }
             this.axios.post('/api/login',data)
             .then((response) => {
@@ -82,6 +80,7 @@ export default {
                     type: 'success',
                     confirmButtonText: 'OK'
                 })
+                this.$store.commit('authenticated');
                 this.$router.push('home') 
             })
             .catch((error)=>{
@@ -96,11 +95,6 @@ export default {
     }
   },
    computed: {
-      csrf_token() {
-        let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('value');
-        this.token = token;
-        return token;
-      }
     },
 }
 </script>

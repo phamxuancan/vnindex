@@ -6,16 +6,20 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    layout: 'test'
+    is_login:false
   },
   mutations: {
-    SET_LAYOUT (state, payload) {
-      state.layout = payload
+    async authenticated(state){
+      console.log('fffffffff');
+      state.is_login = true;
     }
   },
   getters: {
     layout (state) {
       return state.layout
+    },
+    checkLogin(state){
+      return state.is_login;
     }
   }
 })

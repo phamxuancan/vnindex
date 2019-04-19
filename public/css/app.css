@@ -10521,7 +10521,7 @@ label.panel-block:hover {
 .footer {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem;
-}/*! Buefy v0.7.4 | MIT License | github.com/buefy/buefy */ 
+}/*! Buefy v0.7.3 | MIT License | github.com/buefy/buefy */ 
 .is-noscroll {
   position: fixed;
   overflow-y: hidden;
@@ -19071,299 +19071,6 @@ label.panel-block {
   .b-checkbox.checkbox.is-large {
     font-size: 1.5rem; }
 
-.b-clockpicker {
-  display: inline-block; }
-  .b-clockpicker .card-header {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker .b-clockpicker-face:after {
-    background-color: #7957d5; }
-  .b-clockpicker .b-clockpicker-face-hand {
-    background-color: #7957d5;
-    border-color: #7957d5; }
-  .b-clockpicker .b-clockpicker-face-number.active {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker.is-white .card-header {
-    background-color: white;
-    color: #0a0a0a; }
-  .b-clockpicker.is-white .b-clockpicker-face:after {
-    background-color: white; }
-  .b-clockpicker.is-white .b-clockpicker-face-hand {
-    background-color: white;
-    border-color: white; }
-  .b-clockpicker.is-white .b-clockpicker-face-number.active {
-    background-color: white;
-    color: #0a0a0a; }
-  .b-clockpicker.is-black .card-header {
-    background-color: #0a0a0a;
-    color: white; }
-  .b-clockpicker.is-black .b-clockpicker-face:after {
-    background-color: #0a0a0a; }
-  .b-clockpicker.is-black .b-clockpicker-face-hand {
-    background-color: #0a0a0a;
-    border-color: #0a0a0a; }
-  .b-clockpicker.is-black .b-clockpicker-face-number.active {
-    background-color: #0a0a0a;
-    color: white; }
-  .b-clockpicker.is-light .card-header {
-    background-color: whitesmoke;
-    color: #363636; }
-  .b-clockpicker.is-light .b-clockpicker-face:after {
-    background-color: whitesmoke; }
-  .b-clockpicker.is-light .b-clockpicker-face-hand {
-    background-color: whitesmoke;
-    border-color: whitesmoke; }
-  .b-clockpicker.is-light .b-clockpicker-face-number.active {
-    background-color: whitesmoke;
-    color: #363636; }
-  .b-clockpicker.is-dark .card-header {
-    background-color: #363636;
-    color: whitesmoke; }
-  .b-clockpicker.is-dark .b-clockpicker-face:after {
-    background-color: #363636; }
-  .b-clockpicker.is-dark .b-clockpicker-face-hand {
-    background-color: #363636;
-    border-color: #363636; }
-  .b-clockpicker.is-dark .b-clockpicker-face-number.active {
-    background-color: #363636;
-    color: whitesmoke; }
-  .b-clockpicker.is-primary .card-header {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker.is-primary .b-clockpicker-face:after {
-    background-color: #7957d5; }
-  .b-clockpicker.is-primary .b-clockpicker-face-hand {
-    background-color: #7957d5;
-    border-color: #7957d5; }
-  .b-clockpicker.is-primary .b-clockpicker-face-number.active {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker.is-link .card-header {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker.is-link .b-clockpicker-face:after {
-    background-color: #7957d5; }
-  .b-clockpicker.is-link .b-clockpicker-face-hand {
-    background-color: #7957d5;
-    border-color: #7957d5; }
-  .b-clockpicker.is-link .b-clockpicker-face-number.active {
-    background-color: #7957d5;
-    color: white; }
-  .b-clockpicker.is-info .card-header {
-    background-color: #167df0;
-    color: #fff; }
-  .b-clockpicker.is-info .b-clockpicker-face:after {
-    background-color: #167df0; }
-  .b-clockpicker.is-info .b-clockpicker-face-hand {
-    background-color: #167df0;
-    border-color: #167df0; }
-  .b-clockpicker.is-info .b-clockpicker-face-number.active {
-    background-color: #167df0;
-    color: #fff; }
-  .b-clockpicker.is-success .card-header {
-    background-color: #23d160;
-    color: #fff; }
-  .b-clockpicker.is-success .b-clockpicker-face:after {
-    background-color: #23d160; }
-  .b-clockpicker.is-success .b-clockpicker-face-hand {
-    background-color: #23d160;
-    border-color: #23d160; }
-  .b-clockpicker.is-success .b-clockpicker-face-number.active {
-    background-color: #23d160;
-    color: #fff; }
-  .b-clockpicker.is-warning .card-header {
-    background-color: #ffdd57;
-    color: rgba(0, 0, 0, 0.7); }
-  .b-clockpicker.is-warning .b-clockpicker-face:after {
-    background-color: #ffdd57; }
-  .b-clockpicker.is-warning .b-clockpicker-face-hand {
-    background-color: #ffdd57;
-    border-color: #ffdd57; }
-  .b-clockpicker.is-warning .b-clockpicker-face-number.active {
-    background-color: #ffdd57;
-    color: rgba(0, 0, 0, 0.7); }
-  .b-clockpicker.is-danger .card-header {
-    background-color: #ff3860;
-    color: #fff; }
-  .b-clockpicker.is-danger .b-clockpicker-face:after {
-    background-color: #ff3860; }
-  .b-clockpicker.is-danger .b-clockpicker-face-hand {
-    background-color: #ff3860;
-    border-color: #ff3860; }
-  .b-clockpicker.is-danger .b-clockpicker-face-number.active {
-    background-color: #ff3860;
-    color: #fff; }
-  .b-clockpicker .dropdown-content {
-    padding: 0; }
-  .b-clockpicker .card-content {
-    padding: 12px; }
-  .b-clockpicker-btn {
-    cursor: pointer;
-    opacity: 0.6; }
-    .b-clockpicker-btn:hover, .b-clockpicker-btn.active {
-      opacity: 1; }
-  .b-clockpicker-period .b-clockpicker-btn {
-    font-size: 16px;
-    text-transform: uppercase; }
-  .b-clockpicker-time span {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center; }
-  .b-clockpicker-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    line-height: 1;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    color: inherit; }
-    .b-clockpicker-header .b-clockpicker-time {
-      white-space: nowrap; }
-      .b-clockpicker-header .b-clockpicker-time span {
-        height: 60px;
-        font-size: 60px; }
-    .b-clockpicker-header .b-clockpicker-period {
-      -ms-flex-item-align: end;
-          align-self: flex-end;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      margin: 8px 0 6px 8px; }
-  .b-clockpicker-body {
-    -webkit-transition: 0.9s cubic-bezier(0.25, 0.8, 0.5, 1);
-    transition: 0.9s cubic-bezier(0.25, 0.8, 0.5, 1); }
-    .b-clockpicker-body .b-clockpicker-btn {
-      padding: 0 8px;
-      border-radius: 290486px;
-      margin-bottom: 2px; }
-      .b-clockpicker-body .b-clockpicker-btn:hover, .b-clockpicker-body .b-clockpicker-btn.active {
-        background-color: #7957d5;
-        color: white; }
-    .b-clockpicker-body .b-clockpicker-period {
-      position: absolute;
-      top: 5px;
-      right: 5px; }
-    .b-clockpicker-body .b-clockpicker-time {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      font-size: 16px; }
-    .b-clockpicker-body .b-clockpicker-face {
-      border-radius: 50%;
-      position: relative;
-      background-color: #dbdbdb;
-      width: 100%;
-      height: 100%;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center; }
-      .b-clockpicker-body .b-clockpicker-face:after {
-        border-radius: 50%;
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-        width: 12px;
-        height: 12px;
-        z-index: 10; }
-      .b-clockpicker-body .b-clockpicker-face-outer-ring {
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
-        height: calc(100% - 50px);
-        width: calc(100% - 50px);
-        position: relative;
-        border-radius: 50%; }
-      .b-clockpicker-body .b-clockpicker-face-number {
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        border-radius: 100%;
-        cursor: default;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        font-size: 18px;
-        text-align: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        left: calc(50% - 40px / 2);
-        top: calc(50% - 40px / 2);
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none; }
-        .b-clockpicker-body .b-clockpicker-face-number > span {
-          z-index: 1; }
-        .b-clockpicker-body .b-clockpicker-face-number:before, .b-clockpicker-body .b-clockpicker-face-number:after {
-          content: "";
-          height: 40px;
-          width: 40px;
-          border-radius: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%); }
-        .b-clockpicker-body .b-clockpicker-face-number.active {
-          cursor: default;
-          z-index: 2; }
-        .b-clockpicker-body .b-clockpicker-face-number.disabled {
-          pointer-events: none;
-          opacity: .25; }
-      .b-clockpicker-body .b-clockpicker-face-hand {
-        height: calc(50% - 6px);
-        width: 2px;
-        bottom: 50%;
-        left: calc(50% - 1px);
-        -webkit-transform-origin: center bottom;
-                transform-origin: center bottom;
-        position: absolute;
-        will-change: transform;
-        z-index: 1; }
-        .b-clockpicker-body .b-clockpicker-face-hand:before {
-          background: transparent;
-          border-width: 2px;
-          border-style: solid;
-          border-color: inherit;
-          border-radius: 100%;
-          width: 12px;
-          height: 12px;
-          content: "";
-          position: absolute;
-          top: -6px;
-          left: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%); }
-  .b-clockpicker-footer {
-    display: block;
-    padding: 12px; }
-
 .collapse .collapse-trigger {
   display: inline;
   cursor: pointer; }
@@ -19826,13 +19533,7 @@ label.panel-block {
       padding-left: 0; }
       .notices .snackbar .action .button {
         font-weight: 600;
-        text-transform: uppercase;
-        background: #363636;
-        border: transparent; }
-      .notices .snackbar .action .button:hover {
-        background: #292929; }
-      .notices .snackbar .action .button:active {
-        background: #292929; }
+        text-transform: uppercase; }
       .notices .snackbar .action.is-white .button {
         color: white; }
       .notices .snackbar .action.is-black .button {
@@ -19863,32 +19564,23 @@ label.panel-block {
         min-width: 350px;
         max-width: 600px;
         overflow: hidden; } }
-  .notices .notification {
-    max-width: 600px; }
   .notices .toast.is-top, .notices .toast.is-bottom,
   .notices .snackbar.is-top,
-  .notices .snackbar.is-bottom,
-  .notices .notification.is-top,
-  .notices .notification.is-bottom {
+  .notices .snackbar.is-bottom {
     -ms-flex-item-align: center;
         align-self: center; }
   .notices .toast.is-top-right, .notices .toast.is-bottom-right,
   .notices .snackbar.is-top-right,
-  .notices .snackbar.is-bottom-right,
-  .notices .notification.is-top-right,
-  .notices .notification.is-bottom-right {
+  .notices .snackbar.is-bottom-right {
     -ms-flex-item-align: end;
         align-self: flex-end; }
   .notices .toast.is-top-left, .notices .toast.is-bottom-left,
   .notices .snackbar.is-top-left,
-  .notices .snackbar.is-bottom-left,
-  .notices .notification.is-top-left,
-  .notices .notification.is-bottom-left {
+  .notices .snackbar.is-bottom-left {
     -ms-flex-item-align: start;
         align-self: flex-start; }
   .notices .toast.is-toast,
-  .notices .snackbar.is-toast,
-  .notices .notification.is-toast {
+  .notices .snackbar.is-toast {
     opacity: 0.92; }
   .notices.is-top {
     -webkit-box-orient: vertical;
@@ -20447,7 +20139,7 @@ label.panel-block {
 
 .b-tabs .tab-content {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20461,8 +20153,6 @@ label.panel-block {
         flex-shrink: 0;
     -ms-flex-preferred-size: auto;
         flex-basis: auto; }
-  .b-tabs .tab-content.is-transitioning {
-    overflow: hidden; }
 
 .b-tabs:not(:last-child) {
   margin-bottom: 1.5rem; }

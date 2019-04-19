@@ -1,57 +1,70 @@
 <template>
 <div>
-   <nav class="navbar has-shadow">
-        <div class="container">
-            <!-- <div class="navbar-brand"><a class="navbar-item" href="../"><img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox"/></a>
-            <div class="navbar-burger burger" data-target="navMenu"><span></span><span></span><span></span></div>
-        </div> -->
-        <div class="navbar-menu" id="navMenu" v-if="authenticated">
-            <div class="" >
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Account</a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">Dashboard</a>
-                        <a class="navbar-item">Profile</a>
-                        <a class="navbar-item">Settings</a>
-                    </div>
-                </div>
-            </div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Documentation
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
         </div>
-         <div class="navbar-menu-login" v-if="!authenticated">
-            <div class="btn-login" >
-                <router-link :to="{name:'login'}" class="button is-info">Đăng nhập</router-link>
-            </div>
-         </div>
+      </div>
+      <input class=" navbar-item input" type="search"/>
     </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <router-link :to="{name:'login'}" v-if="!$store.state.is_login" @click="login();"  class="button is-light">
+            Đăng nhập
+          </router-link>
+          <a v-if="$store.state.is_login" @click="logout();" class="button is-light">
+            Đăng xuất
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
-<section class="hero is-info">
-<div class="hero-body">
-    <div class="container">
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input is-large" type="search"/>
-                        <span class="icon is-medium is-left">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <span class="icon is-medium is-right">
-                            <i class="fa fa-empire"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
 <div class="box cta">
     <div class="columns is-mobile is-centered">
         <div class="field is-grouped is-grouped-multiline">
             <div class="control"><span class="tag is-link is-large">Link</span></div>
             <div class="control"><span class="tag is-success is-large">Success</span></div>
             <div class="control"><span class="tag is-black is-large">Black</span></div>
-            <div class="control"><span class="tag is-warning is-large">Warning</span></div>
+            <div class="control"><span class="tag is-warning is-large">Wafrning</span></div>
             <div class="control"><span class="tag is-danger is-large">Danger</span></div>
             <div class="control"><span class="tag is-info is-large">Info</span></div>
         </div>
@@ -79,7 +92,25 @@
         data() {
             return {
                 authenticated: false
+            }
+        },
+        methods:{
+            logout(){
+                this.axios.post('/api/logout')
+                .then((response) => {
+                    this.$router.push('login');
+                })
+                .catch((error)=>{
+                })
+            }
         }
-},
-    }
+        }
 </script>
+<style>
+    .search-area{
+        height: 100px;
+    }
+    .card{
+        background-color: #209cee !important;
+    }
+</style>

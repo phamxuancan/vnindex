@@ -1,19 +1,57 @@
 <template>
-  <section class="container">
-    <button @click="logout()">logout</button>
+  <section style="overflow: auto;height:90vh" >
+    <table class="table is-bordered is-striped is-narrow is-hoverable">
+  <thead>
+    <tr>
+      <th><abbr title="Position"></abbr></th>
+
+      <th v-for="(day, index) in date" :key="index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered" colspan="4">{{ day }}</th>
+      
+      
+    </tr>
+    <tr>
+        <th class="has-text-centered has-background-grey-light">MÃ</th>
+        <template v-for="(day, index) in date">
+            <th :key="'date0'+index" class="has-text-centered has-background-grey-light">Giá</th>
+            <th :key="'date1'+index" class="has-text-centered has-background-grey-light">KL</th>
+            <th  :key="'date2'+index" class="has-text-centered has-background-grey-light">NNMua</th>
+            <th :key="'date3'+index" class="has-text-centered has-background-grey-light">NNBan</th>
+        </template>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(item, index) in data" :key="index">
+      <th class="has-text-centered">{{ index }}</th>
+        <template v-for="(res, index) in item">
+            <td :key="'data0'+index" v-bind:class="{ 'has-background-tb': index%2==0,'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua}"  class="has-text-centered">{{ res.thamchieu }}</td>
+            <td :key="'data1'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.khoiluong }}</td>
+            <td :key="'data2'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.nnmua }}</td>
+            <td :key="'data3'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.nnban }}</td>
+        </template>
+    </tr>
+  </tbody>
+</table>
 </section>
 </template>
 
 <script>
+import mapGetters from 'vuex';
     export default {
         layout:"index",
         mounted() {
             console.log(this.$route);
         },
+        data(){
+            return {
+                date : null,
+                data : null
+            }
+        },
         created(){
-            this.axios.get('/api/user')
+            this.axios.get('/api/display-vnindex')
             .then((response) => {
-                console.log(response);
+                this.date = response.data.data_date;
+                this.data = response.data.array_by_date;
             })
             .catch((error)=>{
             })
@@ -27,6 +65,25 @@
             .catch((error)=>{
             })
             }
+        },
+        computed:{
+            //   ...mapGetters({
+            //         is_login: 'checkLogin'
+            //   })
         }
     }
 </script>
+<style scope="scss">
+    .has-background-tb{
+        background-color:#CCFFFF!important;
+    }
+    .bg-tang{
+        background-color: #0f0;
+    }
+    .bg-giam{
+        background-color: red;
+    }
+    .bg-bang{
+        background-color: yellow;
+    }
+</style>
