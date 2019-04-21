@@ -41,20 +41,13 @@ import mapGetters from 'vuex';
         mounted() {
             console.log(this.$route);
         },
+        props: ['date','data'],
         data(){
             return {
-                date : null,
-                data : null
             }
         },
         created(){
-            this.axios.get('/api/display-vnindex')
-            .then((response) => {
-                this.date = response.data.data_date;
-                this.data = response.data.array_by_date;
-            })
-            .catch((error)=>{
-            })
+            
         },
         methods:{
             logout(){

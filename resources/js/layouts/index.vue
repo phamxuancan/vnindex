@@ -1,5 +1,6 @@
 <template>
 <div>
+<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="false"></b-loading>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://bulma.io">
@@ -38,7 +39,16 @@
           </a>
         </div>
       </div>
-      <input class=" navbar-item input" type="search"/>
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" v-model="code" placeholder="Mã ck">
+        </div>
+        <div class="control">
+          <a @click="search()" class="button is-info">
+            Search
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="navbar-end">
@@ -71,7 +81,7 @@
     </div>
 </div>
         <!-- View router !-->
-        <router-view></router-view>
+        <router-view :date="date" :data="data" ></router-view>
         <!-- end view router -->
 <footer>
 <div class="box cta">
@@ -91,8 +101,21 @@
         },
         data() {
             return {
-                authenticated: false
+                authenticated: false,
+                code:null,
+                date:null,
+                data:null,
+                isLoading: true,
+                isFullPage: true
             }
+        },
+        created(){
+          this.axios.get('/api/display-vnindex')
+              .then((response) => {
+                  this.date = response.data.data_date;
+                  this.data = response.data.array_by_date;
+                  this.isLoading = false;
+              })
         },
         methods:{
             logout(){
@@ -102,8 +125,21 @@
                 })
                 .catch((error)=>{
                 })
+            },
+            search(){
+              if(this.code){
+                this.isLoading = true;
+                this.axios.get('/api/display-vnindex?code='+this.code)
+              .then((response) => {
+                  this.date = response.data.data_date;
+                  this.data = response.data.array_by_date;
+                  this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
+              }
             }
-        }
+          }
         }
 </script>
 <style>
