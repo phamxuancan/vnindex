@@ -23,7 +23,7 @@
     <tr v-for="(item, index) in data" :key="index">
       <th class="has-text-centered">{{ index }}</th>
         <template v-for="(res, index) in item">
-            <td :key="'data0'+index" v-bind:class="{ 'has-background-tb': index%2==0,'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua}"  class="has-text-centered">{{ res.thamchieu }}</td>
+            <td :key="'data0'+index" v-bind:class="{'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua, 'has-background-tb': index%2==0}"  class="has-text-centered">{{ res.thamchieu }}</td>
             <td :key="'data1'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.khoiluong }}</td>
             <td :key="'data2'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.nnmua }}</td>
             <td :key="'data3'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.nnban }}</td>
@@ -68,15 +68,15 @@ import mapGetters from 'vuex';
 </script>
 <style scope="scss">
     .has-background-tb{
-        background-color:#CCFFFF!important;
+        background-color:#CCFFFF;
     }
     .bg-tang{
-        background-color: #0f0;
+        background-color: #0f0!important;
     }
     .bg-giam{
-        background-color: red;
+        background-color: red!important;
     }
     .bg-bang{
-        background-color: yellow;
+        background-color: yellow!important;
     }
 </style>
