@@ -1,5 +1,6 @@
 <template>
 <div>
+  <hr />
 <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="false"></b-loading>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
@@ -14,28 +15,44 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Documentation
-      </a>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          More
+          Khối ngoại
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
+          <a @click="foreign_buy()" class="navbar-item">
+            Mua nhiều
           </a>
-          <a class="navbar-item">
-            Jobs
+          <a @click="foreign_sell()" class="navbar-item">
+            Bán nhiều
           </a>
-          <a class="navbar-item">
-            Contact
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Lọc theo giá
+        </a>
+
+        <div class="navbar-dropdown">
+          <a @click="search_price(1,10)" class="navbar-item">
+            Từ 1->10
           </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
+          <a @click="search_price(10,20)" class="navbar-item">
+             Từ 10->20
+          </a>
+          <a @click="search_price(20,30)" class="navbar-item">
+            Từ 20->30
+          </a>
+          <a @click="search_price(30,40)" class="navbar-item">
+             Từ 30->40
+          </a>
+          <a @click="search_price(40,50)" class="navbar-item">
+             Từ 40->50
+          </a>
+          <a @click="search_price(50,500)" class="navbar-item">
+             Từ 50 trở lên
           </a>
         </div>
       </div>
@@ -68,7 +85,7 @@
     </div>
   </div>
 </nav>
-<div class="box cta">
+<!-- <div class="box cta">
     <div class="columns is-mobile is-centered">
         <div class="field is-grouped is-grouped-multiline">
             <div class="control"><span class="tag is-link is-large">Link</span></div>
@@ -79,9 +96,10 @@
             <div class="control"><span class="tag is-info is-large">Info</span></div>
         </div>
     </div>
-</div>
+</div> -->
+<hr />
         <!-- View router !-->
-        <router-view :date="date" :data="data" ></router-view>
+        <router-view :date="date" :data="data" :foreignData="foreignData" ></router-view>
         <!-- end view router -->
 <footer>
 <div class="box cta">
@@ -106,7 +124,8 @@
                 date:null,
                 data:null,
                 isLoading: true,
-                isFullPage: true
+                isFullPage: true,
+                foreignData:null
             }
         },
         created(){
@@ -138,6 +157,41 @@
               .catch((error)=>{
               })
               }
+            },
+            search_price(from,to){
+              this.isLoading = true;
+                this.axios.get('/api/display-vnindex?from='+from+'&to='+to)
+              .then((response) => {
+                  this.date = response.data.data_date;
+                  this.data = response.data.array_by_date;
+                  this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
+            },
+            foreign_buy(){
+              this.isLoading = true;
+              this.date = null;
+              this.data = null;
+              this.axios.get('/api/foreign?desc=1')
+              .then((response) => {
+                  this.foreignData = response.data;
+                  this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
+            },
+            foreign_sell(){
+              this.isLoading = true;
+              this.date = null;
+              this.data = null;
+              this.axios.get('/api/foreign?asc=1')
+              .then((response) => {
+                  this.foreignData = response.data;
+                  this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
             }
           }
         }

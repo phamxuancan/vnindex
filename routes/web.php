@@ -23,14 +23,13 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
 //     echo '444';
 // })->where('any', '/api/');
     Route::get('/api/pull-data','ProccessController@pullData');
-// Route::get('/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
-// Route::get('/sort-condition','ProccessController@sort')->name('sort');;
 // Route::get('/generate-stock','ProccessController@generateStock');
 // Route::post('/update-eps','ProccessController@updateEPSVNINDEX');
     Route::get('/api/login', 'AuthController@login');
     Route::post('/api/login', 'Auth\LoginController@login');
     Route::post('/api/register', 'AuthController@register');
     Route::get('/api/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
+    Route::get('/api/foreign','ProccessController@sort')->name('foreign');;
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/api/user', 'AuthController@user');
         Route::post('/api/logout', 'AuthController@logout');

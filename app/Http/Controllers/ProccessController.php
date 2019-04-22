@@ -158,6 +158,6 @@ class ProccessController extends Controller
             $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnmua)-SUM(nnban)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 5000 ORDER BY nfsdf DESC"));
             // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
         }
-        return view('sort',compact('results'));
+        return response()->json($results);
     }   
 }

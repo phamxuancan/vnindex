@@ -1870,6 +1870,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'index',
   mounted: function mounted() {
@@ -1882,7 +1900,8 @@ __webpack_require__.r(__webpack_exports__);
       date: null,
       data: null,
       isLoading: true,
-      isFullPage: true
+      isFullPage: true,
+      foreignData: null
     };
   },
   created: function created() {
@@ -1913,6 +1932,38 @@ __webpack_require__.r(__webpack_exports__);
           _this3.isLoading = false;
         }).catch(function (error) {});
       }
+    },
+    search_price: function search_price(from, to) {
+      var _this4 = this;
+
+      this.isLoading = true;
+      this.axios.get('/api/display-vnindex?from=' + from + '&to=' + to).then(function (response) {
+        _this4.date = response.data.data_date;
+        _this4.data = response.data.array_by_date;
+        _this4.isLoading = false;
+      }).catch(function (error) {});
+    },
+    foreign_buy: function foreign_buy() {
+      var _this5 = this;
+
+      this.isLoading = true;
+      this.date = null;
+      this.data = null;
+      this.axios.get('/api/foreign?desc=1').then(function (response) {
+        _this5.foreignData = response.data;
+        _this5.isLoading = false;
+      }).catch(function (error) {});
+    },
+    foreign_sell: function foreign_sell() {
+      var _this6 = this;
+
+      this.isLoading = true;
+      this.date = null;
+      this.data = null;
+      this.axios.get('/api/foreign?asc=1').then(function (response) {
+        _this6.foreignData = response.data;
+        _this6.isLoading = false;
+      }).catch(function (error) {});
     }
   }
 });
@@ -2023,13 +2074,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   layout: "index",
   mounted: function mounted() {
     console.log(this.$route);
   },
-  props: ['date', 'data'],
+  props: ['date', 'data', 'foreignData'],
   data: function data() {
     return {};
   },
@@ -36575,6 +36649,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("hr"),
+      _vm._v(" "),
       _c("b-loading", {
         attrs: {
           "is-full-page": _vm.isFullPage,
@@ -36602,11 +36678,133 @@ var render = function() {
             { staticClass: "navbar-menu", attrs: { id: "navbarBasicExample" } },
             [
               _c("div", { staticClass: "navbar-start" }, [
-                _c("a", { staticClass: "navbar-item" }, [
-                  _vm._v("\r\n        Documentation\r\n      ")
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "navbar-item has-dropdown is-hoverable" },
+                  [
+                    _c("a", { staticClass: "navbar-link" }, [
+                      _vm._v("\r\n          Khối ngoại\r\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "navbar-dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.foreign_buy()
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n            Mua nhiều\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.foreign_sell()
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n            Bán nhiều\r\n          ")]
+                      )
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
-                _vm._m(1),
+                _c(
+                  "div",
+                  { staticClass: "navbar-item has-dropdown is-hoverable" },
+                  [
+                    _c("a", { staticClass: "navbar-link" }, [
+                      _vm._v("\r\n          Lọc theo giá\r\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "navbar-dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(1, 10)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n            Từ 1->10\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(10, 20)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n             Từ 10->20\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(20, 30)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n            Từ 20->30\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(30, 40)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n             Từ 30->40\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(40, 50)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n             Từ 40->50\r\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.search_price(50, 500)
+                            }
+                          }
+                        },
+                        [_vm._v("\r\n             Từ 50 trở lên\r\n          ")]
+                      )
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "field has-addons" }, [
                   _c("div", { staticClass: "control" }, [
@@ -36656,7 +36854,7 @@ var render = function() {
                     "div",
                     { staticClass: "buttons" },
                     [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       !_vm.$store.state.is_login
                         ? _c(
@@ -36698,11 +36896,13 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(3),
+      _c("hr"),
       _vm._v(" "),
-      _c("router-view", { attrs: { date: _vm.date, data: _vm.data } }),
+      _c("router-view", {
+        attrs: { date: _vm.date, data: _vm.data, foreignData: _vm.foreignData }
+      }),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(2)
     ],
     1
   )
@@ -36752,84 +36952,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
-      _c("a", { staticClass: "navbar-link" }, [
-        _vm._v("\r\n          More\r\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navbar-dropdown" }, [
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            About\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Jobs\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Contact\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "navbar-divider" }),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Report an issue\r\n          ")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("a", { staticClass: "button is-primary" }, [
       _c("strong", [_vm._v("Sign up")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box cta" }, [
-      _c("div", { staticClass: "columns is-mobile is-centered" }, [
-        _c("div", { staticClass: "field is-grouped is-grouped-multiline" }, [
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-link is-large" }, [
-              _vm._v("Link")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-success is-large" }, [
-              _vm._v("Success")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-black is-large" }, [
-              _vm._v("Black")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-warning is-large" }, [
-              _vm._v("Wafrning")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-danger is-large" }, [
-              _vm._v("Danger")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("span", { staticClass: "tag is-info is-large" }, [
-              _vm._v("Info")
-            ])
-          ])
-        ])
-      ])
     ])
   },
   function() {
@@ -36939,153 +37063,226 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticStyle: { overflow: "auto", height: "90vh" } }, [
-    _c(
-      "table",
-      { staticClass: "table is-bordered is-striped is-narrow is-hoverable" },
-      [
-        _c("thead", [
+  return _c("div", [
+    _vm.data && _vm.foreignData == null
+      ? _c("section", { staticStyle: { overflow: "auto", height: "90vh" } }, [
           _c(
-            "tr",
+            "table",
+            {
+              staticClass:
+                "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+            },
             [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.date, function(day, index) {
-                return _c(
-                  "th",
-                  {
-                    key: index,
-                    staticClass: "has-text-centered",
-                    class: { "has-background-tb": index % 2 == 0 },
-                    attrs: { colspan: "4" }
-                  },
-                  [_vm._v(_vm._s(day))]
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "tr",
-            [
-              _c(
-                "th",
-                { staticClass: "has-text-centered has-background-grey-light" },
-                [_vm._v("MÃ")]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.date, function(day, index) {
-                return [
-                  _c(
-                    "th",
-                    {
-                      key: "date0" + index,
-                      staticClass: "has-text-centered has-background-grey-light"
-                    },
-                    [_vm._v("Giá")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      key: "date1" + index,
-                      staticClass: "has-text-centered has-background-grey-light"
-                    },
-                    [_vm._v("KL")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      key: "date2" + index,
-                      staticClass: "has-text-centered has-background-grey-light"
-                    },
-                    [_vm._v("NNMua")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      key: "date3" + index,
-                      staticClass: "has-text-centered has-background-grey-light"
-                    },
-                    [_vm._v("NNBan")]
-                  )
-                ]
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.data, function(item, index) {
-            return _c(
-              "tr",
-              { key: index },
-              [
-                _c("th", { staticClass: "has-text-centered" }, [
-                  _vm._v(_vm._s(index))
-                ]),
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._l(_vm.date, function(day, index) {
+                      return _c(
+                        "th",
+                        {
+                          key: index,
+                          staticClass: "has-text-centered",
+                          class: { "has-background-tb": index % 2 == 0 },
+                          attrs: { colspan: "4" }
+                        },
+                        [_vm._v(_vm._s(day))]
+                      )
+                    })
+                  ],
+                  2
+                ),
                 _vm._v(" "),
-                _vm._l(item, function(res, index) {
-                  return [
+                _c(
+                  "tr",
+                  [
+                    _c(
+                      "th",
+                      {
+                        staticClass:
+                          "has-text-centered has-background-grey-light"
+                      },
+                      [_vm._v("MÃ")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.date, function(day, index) {
+                      return [
+                        _c(
+                          "th",
+                          {
+                            key: "date0" + index,
+                            staticClass:
+                              "has-text-centered has-background-grey-light"
+                          },
+                          [_vm._v("Giá")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            key: "date1" + index,
+                            staticClass:
+                              "has-text-centered has-background-grey-light"
+                          },
+                          [_vm._v("KL")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            key: "date2" + index,
+                            staticClass:
+                              "has-text-centered has-background-grey-light"
+                          },
+                          [_vm._v("NNMua")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            key: "date3" + index,
+                            staticClass:
+                              "has-text-centered has-background-grey-light"
+                          },
+                          [_vm._v("NNBan")]
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.data, function(item, index) {
+                  return _c(
+                    "tr",
+                    { key: index },
+                    [
+                      _c("th", { staticClass: "has-text-centered" }, [
+                        _vm._v(_vm._s(index))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(item, function(res, index) {
+                        return [
+                          _c(
+                            "td",
+                            {
+                              key: "data0" + index,
+                              staticClass: "has-text-centered",
+                              class: {
+                                "bg-tang": res.thamchieu > res.tchomqua,
+                                "bg-giam": res.thamchieu < res.tchomqua,
+                                "bg-bang": res.thamchieu == res.tchomqua,
+                                "has-background-tb": index % 2 == 0
+                              }
+                            },
+                            [_vm._v(_vm._s(res.thamchieu))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              key: "data1" + index,
+                              staticClass: "has-text-centered",
+                              class: { "has-background-tb": index % 2 == 0 }
+                            },
+                            [_vm._v(_vm._s(res.khoiluong))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              key: "data2" + index,
+                              staticClass: "has-text-centered",
+                              class: { "has-background-tb": index % 2 == 0 }
+                            },
+                            [_vm._v(_vm._s(res.nnmua))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              key: "data3" + index,
+                              staticClass: "has-text-centered",
+                              class: { "has-background-tb": index % 2 == 0 }
+                            },
+                            [_vm._v(_vm._s(res.nnban))]
+                          )
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.data == null && _vm.foreignData
+      ? _c("section", { staticStyle: { overflow: "auto", height: "90vh" } }, [
+          _c(
+            "table",
+            {
+              staticClass:
+                "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.foreignData, function(item, index) {
+                  return _c("tr", { key: index }, [
                     _c(
                       "td",
                       {
                         key: "data0" + index,
-                        staticClass: "has-text-centered",
-                        class: {
-                          "bg-tang": res.thamchieu > res.tchomqua,
-                          "bg-giam": res.thamchieu < res.tchomqua,
-                          "bg-bang": res.thamchieu == res.tchomqua,
-                          "has-background-tb": index % 2 == 0
-                        }
+                        staticClass: "has-text-centered"
                       },
-                      [_vm._v(_vm._s(res.thamchieu))]
+                      [_vm._v(_vm._s(item.code))]
                     ),
                     _vm._v(" "),
                     _c(
                       "td",
                       {
                         key: "data1" + index,
-                        staticClass: "has-text-centered",
-                        class: { "has-background-tb": index % 2 == 0 }
+                        staticClass: "has-text-centered"
                       },
-                      [_vm._v(_vm._s(res.khoiluong))]
+                      [_vm._v(_vm._s(item.nfsdf))]
                     ),
                     _vm._v(" "),
                     _c(
                       "td",
                       {
                         key: "data2" + index,
-                        staticClass: "has-text-centered",
-                        class: { "has-background-tb": index % 2 == 0 }
+                        staticClass: "has-text-centered"
                       },
-                      [_vm._v(_vm._s(res.nnmua))]
+                      [_vm._v(_vm._s(item.tong_mua))]
                     ),
                     _vm._v(" "),
                     _c(
                       "td",
                       {
                         key: "data3" + index,
-                        staticClass: "has-text-centered",
-                        class: { "has-background-tb": index % 2 == 0 }
+                        staticClass: "has-text-centered"
                       },
-                      [_vm._v(_vm._s(res.nnban))]
+                      [_vm._v(_vm._s(item.tong_ban))]
                     )
-                  ]
-                })
-              ],
-              2
-            )
-          }),
-          0
-        )
-      ]
-    )
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -37094,6 +37291,38 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("th", [_c("abbr", { attrs: { title: "Position" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c(
+          "th",
+          { staticClass: "has-text-centered has-background-grey-light" },
+          [_vm._v("MÃ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "has-text-centered has-background-grey-light" },
+          [_vm._v("KL")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "has-text-centered has-background-grey-light" },
+          [_vm._v("Tổng Mua")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "has-text-centered has-background-grey-light" },
+          [_vm._v("Tổng Bán")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true

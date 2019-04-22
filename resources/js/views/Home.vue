@@ -1,6 +1,7 @@
 <template>
-  <section style="overflow: auto;height:90vh" >
-    <table class="table is-bordered is-striped is-narrow is-hoverable">
+<div>
+  <section style="overflow: auto;height:90vh" v-if="data && foreignData == null" >
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
   <thead>
     <tr>
       <th><abbr title="Position"></abbr></th>
@@ -32,6 +33,28 @@
   </tbody>
 </table>
 </section>
+
+  <section style="overflow: auto;height:90vh" v-if="data == null && foreignData" >
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+        <th class="has-text-centered has-background-grey-light">MÃ</th>
+        <th class="has-text-centered has-background-grey-light">KL</th>
+        <th class="has-text-centered has-background-grey-light">Tổng Mua</th>
+        <th class="has-text-centered has-background-grey-light">Tổng Bán</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(item, index) in foreignData" :key="index">
+        <td :key="'data0'+index" class="has-text-centered">{{ item.code }}</td>
+        <td :key="'data1'+index" class="has-text-centered">{{ item.nfsdf }}</td>
+        <td :key="'data2'+index" class="has-text-centered">{{ item.tong_mua }}</td>
+        <td :key="'data3'+index" class="has-text-centered">{{ item.tong_ban }}</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+</div>
 </template>
 
 <script>
@@ -41,7 +64,7 @@ import mapGetters from 'vuex';
         mounted() {
             console.log(this.$route);
         },
-        props: ['date','data'],
+        props: ['date','data','foreignData'],
         data(){
             return {
             }
