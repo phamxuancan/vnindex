@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <tr v-for="(item, index) in data" :key="index">
-      <th class="has-text-centered">{{ index }}</th>
+      <th class="has-text-centered"  :title="item[0].stock?item[0].stock.companyName:''">{{ index }}</th>
         <template v-for="(res, index) in item">
             <td :key="'data0'+index" v-bind:class="{'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua, 'has-background-tb': index%2==0}"  class="has-text-centered">{{ res.thamchieu }}</td>
             <td :key="'data1'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.khoiluong }}</td>
@@ -46,7 +46,9 @@
   </thead>
   <tbody>
     <tr v-for="(item, index) in foreignData" :key="index">
-        <td :key="'data0'+index" class="has-text-centered">{{ item.code }}</td>
+        <td @click="chooseCode(item.code)" :key="'data0'+index" class="has-text-centered">
+           {{ item.code }}
+        </td>
         <td :key="'data1'+index" class="has-text-centered">{{ item.nfsdf }}</td>
         <td :key="'data2'+index" class="has-text-centered">{{ item.tong_mua }}</td>
         <td :key="'data3'+index" class="has-text-centered">{{ item.tong_ban }}</td>
@@ -62,7 +64,7 @@ import mapGetters from 'vuex';
     export default {
         layout:"index",
         mounted() {
-            console.log(this.$route);
+            console.log(this.$route.params.code);
         },
         props: ['date','data','foreignData'],
         data(){
@@ -80,6 +82,9 @@ import mapGetters from 'vuex';
             })
             .catch((error)=>{
             })
+            },
+            chooseCode(code){
+                this.$parent.code = code;
             }
         },
         computed:{

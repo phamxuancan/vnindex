@@ -129,12 +129,29 @@
             }
         },
         created(){
+          console.log(this.$route.query);
           this.axios.get('/api/display-vnindex')
               .then((response) => {
                   this.date = response.data.data_date;
                   this.data = response.data.array_by_date;
                   this.isLoading = false;
               })
+        },
+        watch:{
+          code:function(value){
+            if(this.code){
+                this.isLoading = true;
+                this.axios.get('/api/display-vnindex?code='+value)
+              .then((response) => {
+                this.foreignData = null;
+                this.date = response.data.data_date;
+                this.data = response.data.array_by_date;
+                this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
+              }
+          }
         },
         methods:{
             logout(){
@@ -150,6 +167,7 @@
                 this.isLoading = true;
                 this.axios.get('/api/display-vnindex?code='+this.code)
               .then((response) => {
+                  this.foreignData = null;
                   this.date = response.data.data_date;
                   this.data = response.data.array_by_date;
                   this.isLoading = false;
@@ -162,6 +180,7 @@
               this.isLoading = true;
                 this.axios.get('/api/display-vnindex?from='+from+'&to='+to)
               .then((response) => {
+                this.foreignData = null;
                   this.date = response.data.data_date;
                   this.data = response.data.array_by_date;
                   this.isLoading = false;
