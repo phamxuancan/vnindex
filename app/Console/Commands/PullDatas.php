@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 
 class PullDatas extends Command
 {
@@ -37,7 +39,7 @@ class PullDatas extends Command
      */
     public function handle()
     {
-        echo (123);
+        Mail::to('kudo2616@gmail.com')->send(new OrderShipped());
         //
     }
 }

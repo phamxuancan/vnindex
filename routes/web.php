@@ -30,6 +30,7 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
     Route::post('/api/register', 'AuthController@register');
     Route::get('/api/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
     Route::get('/api/foreign','ProccessController@sort')->name('foreign');;
+    Route::get('/api/sendEmail','ProccessController@send')->name('send');;
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/api/user', 'AuthController@user');
         Route::post('/api/logout', 'AuthController@logout');

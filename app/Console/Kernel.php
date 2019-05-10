@@ -26,9 +26,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('command:pulldata')
+        $schedule->command('command:pulldata');
         // ->appendOutputTo(storage_path('logs/healthcheck.log'));
-        ->weekdays()->at('20:00');
+        // ->weekdays()->at('20:00');
     }
 
     /**
