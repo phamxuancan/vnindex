@@ -7,6 +7,8 @@ use App\Vnindex;
 use App\Stock;
 use GuzzleHttp\Client;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 class ProccessController extends Controller
 {
     public function pullData(){
@@ -160,4 +162,7 @@ class ProccessController extends Controller
         }
         return response()->json($results);
     }   
+    public function send(){
+        Mail::to('kudo2616@gmail.com')->send(new OrderShipped());
+    }
 }

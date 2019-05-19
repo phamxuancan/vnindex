@@ -30,10 +30,17 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
     Route::post('/api/register', 'AuthController@register');
     Route::get('/api/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
     Route::get('/api/foreign','ProccessController@sort')->name('foreign');;
+<<<<<<< .mine
     Route::get('/api/pivote/add','HomeController@pivot_add')->name('pivote_add');;
     Route::get('/api/collection_put','HomeController@collection_put')->name('collection_put');;
     Route::get('/api/test_data','HomeController@test_data')->name('test_data');;
     
+=======
+    Route::get('/api/sendEmail','ProccessController@send')->name('send');;
+
+
+
+>>>>>>> .theirs
     Route::group(['middleware' => 'auth'], function(){
         Route::middleware('throttle:2,1')->group(function () {
             Route::post('/api/login', 'Auth\LoginController@login');
