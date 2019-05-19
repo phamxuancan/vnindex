@@ -23,7 +23,7 @@ Vue.use(Vuelidate)
  
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
-axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('value');
+//axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('value');
 Vue.use(VueAxios,axios)
 Vue.use(Buefy);
 Vue.use(Meta)
