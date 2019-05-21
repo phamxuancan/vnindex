@@ -165,4 +165,12 @@ class ProccessController extends Controller
     public function send(){
         Mail::to('kudo2616@gmail.com')->send(new OrderShipped());
     }
+    public function standFilter(){
+        $data = DB::table('vnindexs')
+                ->where('khoiluong','>',100000)
+                ->groupBy('code')
+                ->havingRaw('count(*) > ?',[3])
+                ->get()->toArray();
+        dd($data);
+    }
 }

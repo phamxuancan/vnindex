@@ -30,6 +30,7 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
     Route::post('/api/register', 'AuthController@register');
     Route::get('/api/display-vnindex','ProccessController@displayVNindex')->name('display-vnindex');;
     Route::get('/api/foreign','ProccessController@sort')->name('foreign');;
+    Route::get('/api/stand-filter','ProccessController@standFilter')->name('standFilter');;
     Route::get('/api/pivote/add','HomeController@pivot_add')->name('pivote_add');;
     Route::get('/api/collection_put','HomeController@collection_put')->name('collection_put');;
     Route::get('/api/test_data','HomeController@test_data')->name('test_data');;
