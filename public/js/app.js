@@ -1888,6 +1888,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'index',
   mounted: function mounted() {
@@ -1961,26 +1966,37 @@ __webpack_require__.r(__webpack_exports__);
         _this5.isLoading = false;
       })["catch"](function (error) {});
     },
-    foreign_buy: function foreign_buy() {
+    search_tbgd: function search_tbgd() {
       var _this6 = this;
 
       this.isLoading = true;
-      this.date = null;
-      this.data = null;
-      this.axios.get('/api/foreign?desc=1').then(function (response) {
-        _this6.foreignData = response.data;
+      this.axios.get('/api/stand-filter').then(function (response) {
+        _this6.foreignData = null;
+        _this6.date = response.data.data_date;
+        _this6.data = response.data.array_by_date;
         _this6.isLoading = false;
       })["catch"](function (error) {});
     },
-    foreign_sell: function foreign_sell() {
+    foreign_buy: function foreign_buy() {
       var _this7 = this;
 
       this.isLoading = true;
       this.date = null;
       this.data = null;
-      this.axios.get('/api/foreign?asc=1').then(function (response) {
+      this.axios.get('/api/foreign?desc=1').then(function (response) {
         _this7.foreignData = response.data;
         _this7.isLoading = false;
+      })["catch"](function (error) {});
+    },
+    foreign_sell: function foreign_sell() {
+      var _this8 = this;
+
+      this.isLoading = true;
+      this.date = null;
+      this.data = null;
+      this.axios.get('/api/foreign?asc=1').then(function (response) {
+        _this8.foreignData = response.data;
+        _this8.isLoading = false;
       })["catch"](function (error) {});
     }
   }
@@ -2415,7 +2431,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./buefy.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/buefy/dist/buefy.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./buefy.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/buefy/dist/buefy.css?e54e");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -16083,7 +16099,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/buefy/dist/buefy.css":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/buefy/dist/buefy.css?e54e":
 /*!***************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/buefy/dist/buefy.css ***!
   \***************************************************************************************************************************/
@@ -37988,6 +38004,25 @@ var render = function() {
                         [_vm._v("\r\n            Bán nhiều\r\n          ")]
                       )
                     ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "navbar-item has-dropdown is-hoverable" },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "navbar-link",
+                        on: {
+                          click: function($event) {
+                            return _vm.search_tbgd()
+                          }
+                        }
+                      },
+                      [_vm._v("\r\n          TB GD\r\n        ")]
+                    )
                   ]
                 ),
                 _vm._v(" "),

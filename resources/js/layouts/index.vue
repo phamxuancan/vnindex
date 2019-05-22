@@ -29,6 +29,11 @@
           </a>
         </div>
       </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a  @click="search_tbgd()" class="navbar-link">
+          TB GD
+        </a>
+      </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -179,6 +184,18 @@
             search_price(from,to){
               this.isLoading = true;
                 this.axios.get('/api/display-vnindex?from='+from+'&to='+to)
+              .then((response) => {
+                this.foreignData = null;
+                  this.date = response.data.data_date;
+                  this.data = response.data.array_by_date;
+                  this.isLoading = false;
+              })
+              .catch((error)=>{
+              })
+            },
+            search_tbgd(){
+              this.isLoading = true;
+                this.axios.get('/api/stand-filter')
               .then((response) => {
                 this.foreignData = null;
                   this.date = response.data.data_date;

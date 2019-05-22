@@ -96,7 +96,9 @@ class ProccessController extends Controller
             })
             ->get()->toArray();
         }else{
-            $datas = Vnindex::with('stock')->get()->toArray();
+            $datas = Vnindex::with('stock')
+                            ->orderby('ngaythang','DESC')   
+                            ->get()->toArray();
         }
         $array_by_date = [];
         $data_date = [];
@@ -166,11 +168,40 @@ class ProccessController extends Controller
         Mail::to('kudo2616@gmail.com')->send(new OrderShipped());
     }
     public function standFilter(){
-        $data = DB::table('vnindexs')
-                ->where('khoiluong','>',100000)
+        $date = Vnindex::orderBy('id','DESC')->first()->toArray();
+        $date = $date['ngaythang'];
+        $from_date=date('Y-m-d', strtotime('-6 day', strtotime($date)));
+        $sub = Vnindex::where('khoiluong','>','?')
+                        ->where('ngaythang','>','?')
+                        ->orderBy('ngaythang','DESC');
+        $data = DB::table(DB::raw("({$sub->toSql()}) as sub"))
                 ->groupBy('code')
-                ->havingRaw('count(*) > ?',[3])
+                ->havingRaw('count(*) > ?',[120000,$from_date,3])
                 ->get()->toArray();
-        dd($data);
+        $id_data = [];
+        if(count($data)){
+            foreach($data as $e){
+                array_push($id_data,$e->code);
+            }
+        }
+        $datas = Vnindex::with('stock')
+        ->whereIn('code',$id_data)
+        ->orderby('ngaythang','DESC')   
+        ->get()->toArray();
+        $array_by_date = [];
+        $data_date = [];
+        foreach($datas as $data){
+            // dd($data);
+            $array_by_date[$data['code']][] = $data;
+            if(!in_array($data['ngaythang'],$data_date)){
+                array_push($data_date,$data['ngaythang']);
+            }
+        }
+        // dd($data_date);
+        // dd($array_by_date);
+         return response()->json([
+            'array_by_date' => $array_by_date,
+            'data_date' => $data_date
+        ]);
     }
 }
