@@ -36,6 +36,7 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
     Route::get('/api/test_data','HomeController@test_data')->name('test_data');;
     
     Route::get('/api/sendEmail','ProccessController@send')->name('send');;
+    Route::get('/api/suc-manh-mua','ProccessController@buyStrong')->name('buyStrong');;
 
 
 

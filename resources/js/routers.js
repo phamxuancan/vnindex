@@ -1,40 +1,48 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '@/js/views/Home';
-import Login from '@/js/views/Login';
-import Register from '@/js/views/register';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "@/js/views/Home";
+import Login from "@/js/views/Login";
+import Register from "@/js/views/register";
 // import About from '@/js/views/About';
-import Meta from 'vue-meta'
+import Meta from "vue-meta";
 Vue.use(VueRouter);
-Vue.use(Meta)
+Vue.use(Meta);
 
 const router = new VueRouter({
-    mode:'history',
+    mode: "history",
     routes: [
         {
-          path:'/home',
-          name:'home',
-          component:Home,
-          meta: {
-            layout: 'index'
-          }
+            path: "/home",
+            name: "home",
+            component: Home,
+            meta: {
+                layout: "index"
+            }
         },
         {
-          path:'/login',
-          name:'login',
-          component:Login,
-          meta: {
-            layout: 'login'
-          }
+            path: "/buy-strong",
+            name: "buy.strong",
+            component: Home,
+            meta: {
+                layout: "buyStrong"
+            }
         },
         {
-          path:'/register',
-          name:'register',
-          component:Register,
-          meta: {
-            layout: 'login'
-          }
+            path: "/login",
+            name: "login",
+            component: Login,
+            meta: {
+                layout: "login"
+            }
         },
-      ]   
+        {
+            path: "/register",
+            name: "register",
+            component: Register,
+            meta: {
+                layout: "login"
+            }
+        }
+    ]
 });
 export default router;

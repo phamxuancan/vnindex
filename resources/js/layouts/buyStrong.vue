@@ -34,11 +34,6 @@
           TB GD
         </a>
       </div>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a  @click="redirectBuyStrong()" class="navbar-link">
-          Mua trội
-        </a>
-      </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -123,7 +118,7 @@
 
 <script>
 export default {
-  name: "index",
+  name: "buyStrong",
   mounted() {
     console.log("Compsonent mounted.");
   },
@@ -140,7 +135,7 @@ export default {
   },
   created() {
     console.log(this.$route.query);
-    this.axios.get("/api/display-vnindex").then(response => {
+    this.axios.get("/api/suc-manh-mua").then(response => {
       this.date = response.data.data_date;
       this.data = response.data.array_by_date;
       this.isLoading = false;
@@ -163,9 +158,6 @@ export default {
     }
   },
   methods: {
-    redirectBuyStrong() {
-      this.$router.push({ name: "buy.strong" });
-    },
     logout() {
       this.axios
         .post("/api/logout")

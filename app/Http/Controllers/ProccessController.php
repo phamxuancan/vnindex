@@ -204,4 +204,47 @@ class ProccessController extends Controller
             'data_date' => $data_date
         ]);
     }
+    public function buyStrong(){
+        $date = Vnindex::orderBy('id','DESC')->first()->toArray();
+        $date = $date['ngaythang'];
+        $date_45 =  date('Y-m-d',strtotime($date . "-45 days"));
+        $datas = Vnindex::where('ngaythang','>',$date_45)
+                            ->where('khoiluong','!=','')   
+                            ->orderby('code','ASC')   
+                            ->orderby('ngaythang','DESC')   
+                            ->get()->toArray();
+        $array_by_date = [];
+        $data_date = [];
+        foreach($datas as $data){
+            // dd($data);
+            $array_by_date[$data['code']][] = $data;
+            if(!in_array($data['ngaythang'],$data_date)){
+                array_push($data_date,$data['ngaythang']);
+            }
+        }
+        $array_buy = [];
+        foreach( $array_by_date as $response ){
+            $tong_duong = 0;
+            $tong_am = 0;
+            foreach($response as $r){
+               if($r['thamchieu'] < $r['tchomqua']){
+                   $tong_am+=$r['khoiluong'];
+               }
+               if($r['thamchieu'] > $r['tchomqua']){
+                   $tong_duong+=$r['khoiluong'];
+               }
+            }
+            if($tong_am == 0){
+               $array_buy[$r['code']] = $array_by_date[$r['code']];
+            }else{
+                if(($tong_duong/$tong_am) >=2){
+                     $array_buy[$r['code']] = $array_by_date[$r['code']];
+                }
+            }
+        }
+       return response()->json([
+            'array_by_date' => $array_buy,
+            'data_date' => $data_date
+        ]);
+    }
 }
