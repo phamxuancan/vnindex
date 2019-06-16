@@ -2381,13 +2381,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   layout: "index",
   mounted: function mounted() {
     console.log(this.$route.params.code);
   },
-  props: ['date', 'data', 'foreignData'],
+  props: ["date", "data", "foreignData"],
   data: function data() {
     return {};
   },
@@ -2396,8 +2397,8 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      this.axios.post('/api/logout').then(function (response) {
-        _this.$router.push('login');
+      this.axios.post("/api/logout").then(function (response) {
+        _this.$router.push("login");
       })["catch"](function (error) {});
     },
     chooseCode: function chooseCode(code) {
@@ -16416,7 +16417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.has-background-tb{\n    background-color:#CCFFFF;\n}\n.bg-tang{\n    background-color: #0f0!important;\n}\n.bg-giam{\n    background-color: red!important;\n}\n.bg-bang{\n    background-color: yellow!important;\n}\n", ""]);
+exports.push([module.i, "\n.has-background-tb {\r\n  background-color: #ccffff;\n}\n.bg-tang {\r\n  background-color: #0f0 !important;\n}\n.bg-giam {\r\n  background-color: red !important;\n}\n.bg-bang {\r\n  background-color: yellow !important;\n}\n.bg-tim {\r\n  background-color: blueviolet !important;\n}\r\n", ""]);
 
 // exports
 
@@ -39155,13 +39156,33 @@ var render = function() {
                         "th",
                         {
                           staticClass: "has-text-centered",
+                          class: {
+                            "bg-tim":
+                              (item[0].stock &&
+                                (item[0].stock.pe * item[0].stock.eps) / 1000) <
+                              item[0].thamchieu
+                          },
                           attrs: {
                             title: item[0].stock
                               ? item[0].stock.companyName
                               : ""
                           }
                         },
-                        [_vm._v(_vm._s(index))]
+                        [
+                          _vm._v(
+                            _vm._s(index) +
+                              "\r\n          (" +
+                              _vm._s(
+                                item[0].stock
+                                  ? (
+                                      (item[0].stock.pe * item[0].stock.eps) /
+                                      1000
+                                    ).toFixed(2)
+                                  : "unknow"
+                              ) +
+                              ")"
+                          )
+                        ]
                       ),
                       _vm._v(" "),
                       _vm._l(item, function(res, index) {

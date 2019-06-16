@@ -24,7 +24,7 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
 // })->where('any', '/api/');
     Route::get('/api/pull-data','ProccessController@pullData');
 // Route::get('/generate-stock','ProccessController@generateStock');
-// Route::post('/update-eps','ProccessController@updateEPSVNINDEX');
+    Route::get('/api/update-eps','ProccessController@updateEPSVNINDEX');   
     Route::get('/api/login', 'AuthController@login');
     //Route::post('/api/login', 'Auth\LoginController@login');
     Route::post('/api/register', 'AuthController@register');

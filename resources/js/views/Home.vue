@@ -22,7 +22,8 @@
   </thead>
   <tbody>
     <tr v-for="(item, index) in data" :key="index">
-      <th class="has-text-centered"  :title="item[0].stock?item[0].stock.companyName:''">{{ index }}</th>
+      <th class="has-text-centered"  v-bind:class="{'bg-tim':(item[0].stock && (item[0].stock.pe * item[0].stock.eps)/1000) < item[0].thamchieu}" :title="item[0].stock?item[0].stock.companyName:''">{{ index }}
+          ({{ item[0].stock?((item[0].stock.pe * item[0].stock.eps)/1000).toFixed(2):'unknow' }})</th>
         <template v-for="(res, index) in item">
             <td :key="'data0'+index" v-bind:class="{'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua, 'has-background-tb': index%2==0}"  class="has-text-centered">{{ res.thamchieu }}</td>
             <td :key="'data1'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.khoiluong }}</td>
@@ -60,51 +61,51 @@
 </template>
 
 <script>
-import mapGetters from 'vuex';
-    export default {
-        layout:"index",
-        mounted() {
-            console.log(this.$route.params.code);
-        },
-        props: ['date','data','foreignData'],
-        data(){
-            return {
-            }
-        },
-        created(){
-            
-        },
-        methods:{
-            logout(){
-               this.axios.post('/api/logout')
-            .then((response) => {
-                this.$router.push('login');
-            })
-            .catch((error)=>{
-            })
-            },
-            chooseCode(code){
-                this.$parent.code = code;
-            }
-        },
-        computed:{
-            //   ...mapGetters({
-            //         is_login: 'checkLogin'
-            //   })
-        }
+import mapGetters from "vuex";
+export default {
+  layout: "index",
+  mounted() {
+    console.log(this.$route.params.code);
+  },
+  props: ["date", "data", "foreignData"],
+  data() {
+    return {};
+  },
+  created() {},
+  methods: {
+    logout() {
+      this.axios
+        .post("/api/logout")
+        .then(response => {
+          this.$router.push("login");
+        })
+        .catch(error => {});
+    },
+    chooseCode(code) {
+      this.$parent.code = code;
     }
+  },
+  computed: {
+    //   ...mapGetters({
+    //         is_login: 'checkLogin'
+    //   })
+  }
+};
 </script>
 <style scope="scss">
-    .has-background-tb{
-        background-color:#CCFFFF;
-    }
-    .bg-tang{
-        background-color: #0f0!important;
-    }
-    .bg-giam{
-        background-color: red!important;
-    }
-    .bg-bang{
-        background-color: yellow!important;
-    }
+.has-background-tb {
+  background-color: #ccffff;
+}
+.bg-tang {
+  background-color: #0f0 !important;
+}
+.bg-giam {
+  background-color: red !important;
+}
+.bg-bang {
+  background-color: yellow !important;
+}
+.bg-tim {
+  background-color: blueviolet !important;
+}
 </style>

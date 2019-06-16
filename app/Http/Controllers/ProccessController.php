@@ -208,11 +208,12 @@ class ProccessController extends Controller
         $date = Vnindex::orderBy('id','DESC')->first()->toArray();
         $date = $date['ngaythang'];
         $date_45 =  date('Y-m-d',strtotime($date . "-45 days"));
-        $datas = Vnindex::where('ngaythang','>',$date_45)
+        $datas = Vnindex::with('stock')->where('ngaythang','>',$date_45)
                             ->where('khoiluong','!=','')   
                             ->orderby('code','ASC')   
                             ->orderby('ngaythang','DESC')   
                             ->get()->toArray();
+                            
         $array_by_date = [];
         $data_date = [];
         foreach($datas as $data){
@@ -234,12 +235,8 @@ class ProccessController extends Controller
                    $tong_duong+=$r['khoiluong'];
                }
             }
-            if($tong_am == 0){
-               $array_buy[$r['code']] = $array_by_date[$r['code']];
-            }else{
-                if(($tong_duong/$tong_am) >=2){
-                     $array_buy[$r['code']] = $array_by_date[$r['code']];
-                }
+            if($tong_duong > 100000 && $tong_am != 0 && ($tong_duong/$tong_am) >=2){
+                    $array_buy[$r['code']] = $array_by_date[$r['code']];
             }
         }
        return response()->json([
