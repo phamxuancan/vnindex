@@ -155,11 +155,14 @@ class ProccessController extends Controller
             }
     }
     public function sort(Request $request){
+        $date = Vnindex::orderBy('id','DESC')->first()->toArray();
+        $date = $date['ngaythang'];
+        $from_date=date('Y-m-d', strtotime('-30 day', strtotime($date)));
         if($request->asc){
-            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnban)-SUM(nnmua)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 5000 ORDER BY nfsdf DESC"));
+            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnban)-SUM(nnmua)) as nfsdf FROM vnindexs where GROUP BY code HAVING nfsdf > 50000 ORDER BY nfsdf DESC"));
             // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
         }elseif($request->desc){
-            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnmua)-SUM(nnban)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 5000 ORDER BY nfsdf DESC"));
+            $results = DB::select( DB::raw("SELECT code,SUM(nnmua) as tong_mua ,SUM(nnban) as tong_ban,(SUM(nnmua)-SUM(nnban)) as nfsdf FROM vnindexs GROUP BY code HAVING nfsdf > 50000 ORDER BY nfsdf DESC"));
             // $datas = Vnindex::with('stock')->sum('nnmua')->groupBy('code');
         }
         return response()->json($results);
@@ -243,5 +246,8 @@ class ProccessController extends Controller
             'array_by_date' => $array_buy,
             'data_date' => $data_date
         ]);
+    }
+    public function upload(Request $request){
+        dd($request->all());
     }
 }

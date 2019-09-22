@@ -6,15 +6,14 @@
   </div>
 </template>
 <script>
-const default_layout = 'test';
+const default_layout = "default";
 export default {
-  computed:{
-    layout(){
-      return (this.$route.meta.layout || default_layout)
+  computed: {
+    layout() {
+      console.log(this.$route);
+      return this.$route.meta.layout || default_layout;
     }
   },
-  created() {
-    console.log(this.$route);
-  }
-}
+  created() {}
+};
 </script>

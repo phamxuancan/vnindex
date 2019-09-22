@@ -37,6 +37,7 @@ Route::get('/{any}', 'HomeController@index')->where('any', '^((?!api).)*$');
     
     Route::get('/api/sendEmail','ProccessController@send')->name('send');;
     Route::get('/api/suc-manh-mua','ProccessController@buyStrong')->name('buyStrong');;
+    Route::post('/api/multiple-files','ProccessController@upload')->name('upload');;
 
 
 

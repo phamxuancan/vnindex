@@ -2155,7 +2155,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(this.$route.query);
+    // alert(1)
     this.axios.get("/api/display-vnindex").then(function (response) {
       _this.date = response.data.data_date;
       _this.data = response.data.array_by_date;
@@ -2296,16 +2296,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var default_layout = 'test';
+var default_layout = "default";
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     layout: function layout() {
+      console.log(this.$route);
       return this.$route.meta.layout || default_layout;
     }
   },
-  created: function created() {
-    console.log(this.$route);
-  }
+  created: function created() {}
 });
 
 /***/ }),
@@ -2392,7 +2391,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  created: function created() {},
+  created: function created() {
+    alert(1);
+  },
   methods: {
     logout: function logout() {
       var _this = this;
@@ -39159,7 +39160,7 @@ var render = function() {
                           class: {
                             "bg-tim":
                               (item[0].stock &&
-                                (item[0].stock.pe * item[0].stock.eps) / 1000) <
+                                (item[0].stock.pe * item[0].stock.eps) / 1000) >
                               item[0].thamchieu
                           },
                           attrs: {

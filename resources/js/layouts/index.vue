@@ -139,7 +139,7 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.query);
+    // alert(1)
     this.axios.get("/api/display-vnindex").then(response => {
       this.date = response.data.data_date;
       this.data = response.data.array_by_date;
