@@ -23,7 +23,7 @@
   <tbody>
     <tr v-for="(item, index) in data" :key="index">
       <th class="has-text-centered"  v-bind:class="{'bg-tim':(item[0].stock && (item[0].stock.pe * item[0].stock.eps)/1000) > item[0].thamchieu}" :title="item[0].stock?item[0].stock.companyName:''">{{ index }}
-          ({{ item[0].stock?((item[0].stock.pe * item[0].stock.eps)/1000).toFixed(2):'unknow' }})</th>
+          ({{ item[0].stock?((item[0].stock.pe * item[0].stock.eps)/1000).toFixed(2):'' }})</th>
         <template v-for="(res, index) in item">
             <td :key="'data0'+index" v-bind:class="{'bg-tang': res.thamchieu>res.tchomqua,'bg-giam': res.thamchieu<res.tchomqua,'bg-bang': res.thamchieu== res.tchomqua, 'has-background-tb': index%2==0}"  class="has-text-centered">{{ res.thamchieu }}</td>
             <td :key="'data1'+index" v-bind:class="{ 'has-background-tb': index%2==0 }" class="has-text-centered">{{ res.khoiluong }}</td>
@@ -72,7 +72,6 @@ export default {
     return {};
   },
   created() {
-    alert(1);
   },
   methods: {
     logout() {

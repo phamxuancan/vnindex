@@ -210,7 +210,7 @@ class ProccessController extends Controller
     public function buyStrong(){
         $date = Vnindex::orderBy('id','DESC')->first()->toArray();
         $date = $date['ngaythang'];
-        $date_45 =  date('Y-m-d',strtotime($date . "-45 days"));
+        $date_45 =  date('Y-m-d',strtotime($date . "-30 days"));
         $datas = Vnindex::with('stock')->where('ngaythang','>',$date_45)
                             ->where('khoiluong','!=','')   
                             ->orderby('code','ASC')   
@@ -238,7 +238,7 @@ class ProccessController extends Controller
                    $tong_duong+=$r['khoiluong'];
                }
             }
-            if($tong_duong > 100000 && $tong_am != 0 && ($tong_duong/$tong_am) >=2){
+            if($tong_duong > 100000 && $tong_am != 0 && ($tong_duong/$tong_am) >=1.5){
                     $array_buy[$r['code']] = $array_by_date[$r['code']];
             }
         }
