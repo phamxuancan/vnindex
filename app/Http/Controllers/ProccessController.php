@@ -15,7 +15,7 @@ class ProccessController extends Controller
         try{
 //            echo phpinfo();die;
 
-            $url = 'https://price-cmchn-02.vndirect.com.vn/priceservice/secinfo/snapshot/q=floorCode:10';
+            $url = 'https://price-fpt-05.vndirect.com.vn/priceservice/secinfo/snapshot/q=floorCode:10';
             $data = file_get_contents($url);
             $jsonData = json_decode($data);
             $dataAll = $jsonData->{'10'};
