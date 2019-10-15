@@ -238,7 +238,7 @@ class ProccessController extends Controller
                    $tong_duong+=$r['khoiluong'];
                }
             }
-            if($tong_duong > 100000 && $tong_am != 0 && ($tong_duong/$tong_am) >=1.5){
+            if($tong_duong > 100000 && $tong_am != 0 && (($tong_duong/$tong_am) >=0.8 && ($tong_duong/$tong_am) <=1.25)){
                     $array_buy[$r['code']] = $array_by_date[$r['code']];
             }
         }
